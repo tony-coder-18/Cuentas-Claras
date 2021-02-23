@@ -1,0 +1,94 @@
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Roboto", "Oxygen", "Ubuntu",
+    "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.main-wrap {
+  min-height: 80vh;
+  padding: 2rem 0;
+}
+
+.historial-sec {
+  padding: 2rem 0;
+}
+
+h1,
+h2,
+h3,
+.navbar-brand {
+  font-family: "Noto Serif", serif;
+}
+
+h1 {
+  font-size: 87px;
+  line-height: 118px;
+}
+
+h2 {
+  font-size: 46px;
+  line-height: 63px;
+}
+
+.principal-title + p {
+  font-size: 57.2444px;
+  line-height: 67px;
+}
+
+.numbers {
+  font-size: 46px;
+  line-height: 54px;
+}
+
+.bg-blue {
+  background: #000095;
+}
+
+button.bg-blue:hover{
+  background-color: #000095c2;
+}
+
+.text-blue {
+  color: #000095;
+}
+
+.historial-sec {
+  background-color: #d1d1ed;
+}
+
+.btn-large {
+  font-weight: bold;
+}
+
+label {
+  font-weight: bold;
+  font-size: 25px;
+  line-height: 35px;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.operaciones {
+  border-radius: 20px 20px;
+}
+
+.operaciones div {
+  list-style-type: none;
+  background-color: #000095;
+  color: var(--light);
+}
+
+.historial-sec .btn-outline-dark.btn {
+  color: #000095;
+}
+
+.historial-sec .btn-outline-dark.btn:hover {
+  color: var(--light);
+}
+
+.hidden {
+  display: none;
+}
