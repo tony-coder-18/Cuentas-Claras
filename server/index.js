@@ -26,7 +26,7 @@ app.post("/addtrans", async (req, res) => {
       [TransactionName, Ammount, TransactionDate, TransactionType]
     );
 
-    res.json(newTransaction.rows);
+    res.json(newTransaction.rows[0]);
     console.log(newTransaction.rows);
   } catch (err) {
     console.error(err.message);
@@ -49,7 +49,7 @@ app.get("/transactions/:id", async (req, res) => {
   try {
     const { id } = req.params;
     const transaction = await pool.query(
-      "SELECT * FROM transactions WHERE Id = $1"
+      "SELECT * FROM transactions WHERE Id = $1 "
     );
 
     res.json(transaction.rows[0]);
@@ -67,7 +67,7 @@ app.put("/transaction/:id", async (req, res) => {
     const { TransactionDate } = req.body;
     const { TransactionType } = req.body;
     const updateTransaction = await pool.query(
-      "UPDATE transactions SET TransactionName=$1, Ammount=$2, TransactionDate=$3, TransactionType=$4 WHERE Id=$5",
+      "UPDATE transactions SET TransactionName=$1, Ammount=$2, TransactionDate=$3, TransactionType=$4 WHERE Id=$5 RETURNING *",
       [TransactionName, Ammount, TransactionDate, TransactionType, id]
     );
     res.json("Updated succesfully");
@@ -81,7 +81,7 @@ app.delete("/transaction/:id", async (req, res) => {
   try {
     const { id } = req.params;
     const updateTransaction = await pool.query(
-      "DELETE FROM transactions WHERE Id=$1 ",
+      "DELETE FROM transactions WHERE Id=$1 RETURNING *",
       [id]
     );
     res.json("Deleted succesfully");

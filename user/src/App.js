@@ -5,8 +5,7 @@ import Balance from './components/Balance'
 import Spends from './components/Spends'
 import IncomeForm from './components/IncomeForm'
 import SpendForm from './components/SpendForm'
-import IncomeRecords from './components/IncomeRecords'
-import SpendRecords from './components/SpendRecords'
+import Records from './components/Records'
 import './App.css'
 
 
@@ -24,7 +23,9 @@ function App() {
         <IncomeForm />
         <SpendForm />
       </section>
-      
+      <section className="page-container3">
+        <Records/>
+      </section>
     </div>
   )
 }
