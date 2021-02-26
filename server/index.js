@@ -1,7 +1,6 @@
 const express = require("express");
-const cors = require("cors");
-const { json } = require("express");
 const app = express();
+const cors = require("cors");
 const pool = require("./db");
 
 const port = 3000;
@@ -15,19 +14,17 @@ app.use(express.json());
 //create transaction
 app.post("/addtrans", async (req, res) => {
   try {
-    console.log(req.body);
-    const { TransactionName } = req.body;
+    const { transactionname } = req.body;
     const { Ammount } = req.body;
     const { TransactionDate } = req.body;
     const { TransactionType } = req.body;
 
     const newTransaction = await pool.query(
-      "INSERT INTO transactions (TransactionsName, Ammount, TransactionDate, TransactionType) VALUES ($1, $2, $3, $4) RETURNING *",
-      [TransactionName, Ammount, TransactionDate, TransactionType]
+      "INSERT INTO transactions (TransactionName, Ammount, TransactionDate, TransactionType) VALUES($1, $2, $3, $4)",
+      [transactionname, Ammount, TransactionDate, TransactionType ]
     );
 
-    res.json(newTransaction.rows[0]);
-    console.log(newTransaction.rows);
+    res.json(newTransaction);
   } catch (err) {
     console.error(err.message);
   }
@@ -74,6 +71,7 @@ app.put("/transaction/:id", async (req, res) => {
   } catch (error) {
     console.error(error.message);
   }
+  
 });
 
 //delete a transaction
@@ -89,6 +87,7 @@ app.delete("/transaction/:id", async (req, res) => {
     console.error(error.message);
   }
 });
+
 
 app.listen(port, function () {
   console.log(`Server started at http://localhost:${port}`);

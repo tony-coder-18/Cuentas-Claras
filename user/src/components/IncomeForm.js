@@ -3,25 +3,40 @@ import IncomeRecords from "./Records";
 import IncomeSingleRecord from "./IncomeSingleRecord";
 
 function IncomeForm() {
-  const [addIncome, setaddIncome] = useState({ name: "", amount: 0, date: "" });
-  const [addIncomeList, setaddIncomeList] = useState([]);
+  const [addIncome, setaddIncome] = useState({ transactionname: "", Ammount: 0, TransactionDate: "", TransactionType: "income"});
+  // const [addIncomeList, setaddIncomeList] = useState([]);
+  const [nameTest, setNameTest] = useState("initialState");
 
   function handleChange(e) {
     let newValue = e.target.value;
-    let type = e.target.name;
-    if (type === "text") {
-      setaddIncome({ ...addIncome, name: newValue });
-    } else if (type === "number") {
-      setaddIncome({ ...addIncome, amount: newValue });
+    let name = e.target.name;
+    if (name === "text") {
+      setaddIncome({ ...addIncome, transactionname: newValue });
+    } else if (name === "number") {
+      setaddIncome({ ...addIncome, Ammount: newValue });
     } else {
-      setaddIncome({ ...addIncome, date: newValue });
+      setaddIncome({ ...addIncome, TransactionDate: newValue });
     }
   }
 
-  function handleSubmit(e) {
+  const handleSubmit = async(e) => {
     e.preventDefault();
-    setaddIncomeList([...addIncomeList, addIncome]);
-  }
+    try {
+      
+      const body = { ...addIncome };
+      console.log(body);
+      const res = await fetch("http://localhost:3000/addtrans", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(body)
+      });
+      console.log(res);
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
+    
+
 
   return (
     <div className="page-incomeform">
@@ -29,6 +44,7 @@ function IncomeForm() {
         <label className="page-text07">Asunto</label>
         <input
           onChange={(e) => handleChange(e)}
+          value={addIncome.name}
           type="text"
           name="text"
           className="thqTextInput page-textinput"
@@ -36,6 +52,7 @@ function IncomeForm() {
         <label className="page-text08">Monto</label>
         <input
           onChange={handleChange}
+          value={addIncome.amount}
           type="number"
           name="number"
           className="thqTextInput page-textinput1"
@@ -43,6 +60,7 @@ function IncomeForm() {
         <label className="page-text09">Fecha</label>
         <input
           onChange={handleChange}
+          value={addIncome.date}
           type="date"
           name="date"
           className="thqTextInput page-textinput2"
