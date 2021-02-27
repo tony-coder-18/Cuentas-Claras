@@ -4,6 +4,7 @@ import Form from "./components/Form";
 import Records from "./components/Records";
 import "./App.css";
 import Balance from "./components/Balance";
+import Footer from "./components/Footer";
 
 function App() {
 
@@ -20,6 +21,7 @@ function App() {
         <section className="text-center">
           <Records />
         </section>
+        <Footer/>
       </>
     );
 }
