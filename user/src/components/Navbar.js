@@ -2,8 +2,10 @@ import React from "react";
 
 function Navbar() {
   return (
-    <nav className="page-container1">
-      <span className="page-text">Cuentas Claras</span>
+    <nav className="navbar navbar-expand-lg bg-blue">
+      <div className="container">
+        <span className="navbar-brand text-light">Cuentas Claras</span>
+      </div>
     </nav>
   );
 }

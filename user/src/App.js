@@ -1,33 +1,23 @@
-import React, {useState} from 'react'
-import Navbar from './components/Navbar'
-import Incomes from './components/Incomes'
-import Balance from './components/Balance'
-import Spends from './components/Spends'
-import IncomeForm from './components/IncomeForm'
-import SpendForm from './components/SpendForm'
-import Records from './components/Records'
-import './App.css'
-
+import React, { Component, useState } from "react";
+import Navbar from "./components/Navbar";
+import Form from "./components/Form";
+import Records from "./components/Records";
+import "./App.css";
 
 function App() {
 
-  return (
-    <div className="page-container">
-      <Navbar />
-      <header className="page-container2">
-        <Incomes />
-        <Balance />
-        <Spends />
-      </header>
-      <section className="page-container3">
-        <IncomeForm />
-        <SpendForm />
-      </section>
-      <section className="page-container3">
-        <Records/>
-      </section>
-    </div>
-  )
+    return (
+      <>
+        <Navbar />
+        <section className="form-container text-center">
+          <Form />
+        </section>
+        <hr />
+        <section className="text-center">
+          <Records />
+        </section>
+      </>
+    );
 }
 
-export default App
+export default App;

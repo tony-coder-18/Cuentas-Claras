@@ -3,7 +3,7 @@ const app = express();
 const cors = require("cors");
 const pool = require("./db");
 
-const port = 3000;
+const port = 3001;
 
 //middleware
 app.use(cors());
@@ -33,13 +33,26 @@ app.post("/addtrans", async (req, res) => {
 //get all transactions
 app.get("/transactions", async (req, res) => {
   try {
-    const allTransactions = await pool.query("SELECT * FROM transactions");
-
+    const allTransactions = await pool.query("SELECT *  FROM transactions");
+    
     res.json(allTransactions.rows);
   } catch (error) {
     console.error(error.message);
   }
 });
+
+//get the amount value of the income transactions
+app.get("/transactions/incomes", async (req, res) => {
+  try {
+    const allTransactions = await pool.query("SELECT ammount FROM transactions WHERE transactiontype='income'");
+    
+    res.json(allTransactions.rows);
+
+  } catch (error) {
+    console.error(error.message);
+  }
+});
+
 
 //get a transaction
 app.get("/transactions/:id", async (req, res) => {
@@ -59,13 +72,13 @@ app.get("/transactions/:id", async (req, res) => {
 app.put("/transaction/:id", async (req, res) => {
   try {
     const { id } = req.params;
-    const { Ammount } = req.body;
-    const { TransactionName } = req.body;
-    const { TransactionDate } = req.body;
-    const { TransactionType } = req.body;
+    const { ammount } = req.body;
+    const { transactionname } = req.body;
+    const { transactiondate } = req.body;
+    const { transactiontype } = req.body;
     const updateTransaction = await pool.query(
       "UPDATE transactions SET TransactionName=$1, Ammount=$2, TransactionDate=$3, TransactionType=$4 WHERE Id=$5 RETURNING *",
-      [TransactionName, Ammount, TransactionDate, TransactionType, id]
+      [transactionname, ammount, transactiondate, transactiontype, id]
     );
     res.json("Updated succesfully");
   } catch (error) {

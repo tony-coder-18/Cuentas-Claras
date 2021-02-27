@@ -1,10 +1,17 @@
-import React from "react";
+import React, { useState, useEffect } from "react"
+import Adding from "./Adding";
 
-function Incomes() {
+
+function Incomes(incomes) {
+  console.log(incomes.incomes);
+
   return (
-    <div className="page-incomes">
-      <h2 className="thqHeading2 page-text01">Ingresos</h2>
-      <span className="page-text02">+$110000</span>
+    <div className="page-balance">
+      <h1 className="thqHeading1 page-text03">
+        Ingresos
+        <br />
+      </h1>
+      <span className="page-text04"></span>
     </div>
   );
 }
