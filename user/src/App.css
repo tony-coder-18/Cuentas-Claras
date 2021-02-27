@@ -1,3 +1,7 @@
 h1.text-blue {
   font-size: 3.5rem;
 }
+h2.text-blue{
+  color: darkblue;
+  font-weight: bold;
+}

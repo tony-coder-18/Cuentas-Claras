@@ -11,7 +11,7 @@ app.use(express.json());
 
 //ROUTES
 
-//create transaction
+//create a transaction
 app.post("/addtrans", async (req, res) => {
   try {
     const { transactionname } = req.body;
@@ -30,6 +30,7 @@ app.post("/addtrans", async (req, res) => {
   }
 });
 
+
 //get all transactions
 app.get("/transactions", async (req, res) => {
   try {
@@ -41,12 +42,36 @@ app.get("/transactions", async (req, res) => {
   }
 });
 
-//get the amount value of the income transactions
-app.get("/transactions/incomes", async (req, res) => {
+//get the sum of all transactions
+app.get("/sum", async (req, res) => {
   try {
-    const allTransactions = await pool.query("SELECT ammount FROM transactions WHERE transactiontype='income'");
+    const sumTransactions = await pool.query("SELECT SUM(ammount) FROM transactions");
     
-    res.json(allTransactions.rows);
+    res.json(sumTransactions.rows);
+
+  } catch (error) {
+    console.error(error.message);
+  }
+});
+
+//get the sum of all incomes
+app.get("/incomesum", async (req, res) => {
+  try {
+    const sumIncomes = await pool.query("SELECT SUM(ammount) FROM transactions WHERE transactiontype='Income'");
+    
+    res.json(sumIncomes.rows);
+
+  } catch (error) {
+    console.error(error.message);
+  }
+});
+
+//get the sum of all spends
+app.get("/spendsum", async (req, res) => {
+  try {
+    const sumSpends = await pool.query("SELECT SUM(ammount) FROM transactions WHERE transactiontype='Spend'");
+    
+    res.json(sumSpends.rows);
 
   } catch (error) {
     console.error(error.message);

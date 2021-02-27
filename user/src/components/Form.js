@@ -8,9 +8,10 @@ function Form() {
     TransactionType: "",
   });
 
-
   function handleChange(e) {
     let newValue = e.target.value;
+    let negativeAmmount = -1 * Math.abs(addIncome.Ammount);
+    console.log(negativeAmmount);
     let name = e.target.name;
     if (name === "text") {
       setaddIncome({ ...addIncome, transactionname: newValue });
@@ -18,8 +19,16 @@ function Form() {
       setaddIncome({ ...addIncome, Ammount: newValue });
     } else if (name === "date") {
       setaddIncome({ ...addIncome, TransactionDate: newValue });
-    } else {
-      setaddIncome({ ...addIncome, TransactionType: newValue });
+    } else if (name === "select") {
+      if (newValue === "Spend") {
+        setaddIncome({
+          ...addIncome,
+          Ammount: negativeAmmount,
+          TransactionType: newValue
+        });
+      } else {
+        setaddIncome({ ...addIncome, TransactionType: newValue });
+      }
     }
   }
 
@@ -42,7 +51,7 @@ function Form() {
 
   return (
     <div className="container py-4">
-      <h1 className="text-blue">Agregue su nueva transacción</h1>
+      <h2 className="text-blue">Agregue su nueva transacción</h2>
       <form onSubmit={handleSubmit} className="col-lg-5 col-10 mx-auto mt-3">
         <div className="form-group">
           <label className="text-blue">Asunto</label>
@@ -75,7 +84,7 @@ function Form() {
           />
         </div>
         <div className="form-group">
-          <label className="text-blue" >Tipo de transacción</label>
+          <label className="text-blue">Tipo de transacción</label>
           <select
             className="form-control"
             name="select"

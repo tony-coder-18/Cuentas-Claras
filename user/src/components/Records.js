@@ -32,10 +32,13 @@ function Records() {
       setTransactions(
         transactions.filter((transaction) => transaction.id !== id)
       );
+      window.location = '/';
     } catch (error) {
       console.error(error.message);
     }
   };
+
+  console.log(transactions.length);
 
   return (
     <div className="container py-4">
@@ -55,9 +58,7 @@ function Records() {
 
         <tbody>
           {/* Function that Show each Table row (each transaction) from the transactions array  */}
-          {transactions
-            .slice(transactions.length - 10, transactions.length)
-            .map((transaction) => {
+          {transactions.map((transaction) => {
               return (
                 <tr key={transaction.id}>
                   <td>{transaction.transactionname}</td>
