@@ -11,7 +11,7 @@ function Form() {
   function handleChange(e) {
     let newValue = e.target.value;
     let negativeAmmount = -1 * Math.abs(addIncome.Ammount);
-    console.log(negativeAmmount);
+    
     let name = e.target.name;
     if (name === "text") {
       setaddIncome({ ...addIncome, transactionname: newValue });
@@ -36,7 +36,7 @@ function Form() {
     e.preventDefault();
     try {
       const body = { ...addIncome };
-      console.log(body);
+      
       const res = await fetch("http://localhost:3001/addtrans", {
         method: "POST",
         headers: { "Content-Type": "application/json" },

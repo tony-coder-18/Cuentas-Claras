@@ -3,8 +3,7 @@ import Adding from "./Adding";
 
 
 function Incomes(incomes) {
-  console.log(incomes.incomes);
-
+  
   return (
     <div className="page-balance">
       <h1 className="thqHeading1 page-text03">

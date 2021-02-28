@@ -38,7 +38,6 @@ function Records() {
     }
   };
 
-  console.log(transactions.length);
 
   return (
     <div className="container py-4">

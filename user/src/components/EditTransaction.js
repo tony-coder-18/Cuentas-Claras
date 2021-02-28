@@ -15,7 +15,7 @@ function EditTransaction({ transaction }) {
 
   //   Function for editing a transactions (trigers with the edit button)
   const handleEdit = async (e) => {
-    console.log(trans);
+    
     try {
       const body = { ...trans };
       const editTrans = await fetch(
