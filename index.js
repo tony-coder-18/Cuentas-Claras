@@ -1,13 +1,14 @@
 const express = require("express");
 const app = express();
-const cors = require("cors");
+const cors = require("cors"); //Cors is for interactivity between apps with diferent domains
 const pool = require("./db");
 
 const port = 3001;
 
 //middleware
 app.use(cors());
-app.use(express.json());
+app.use(express.json()); //Give us access to the request body 
+
 
 //ROUTES
 
@@ -23,7 +24,7 @@ app.post("/addtrans", async (req, res) => {
       "INSERT INTO transactions (TransactionName, Ammount, TransactionDate, TransactionType) VALUES($1, $2, $3, $4)",
       [transactionname, Ammount, TransactionDate, TransactionType ]
     );
-
+    
     res.json(newTransaction);
   } catch (err) {
     console.error(err.message);
