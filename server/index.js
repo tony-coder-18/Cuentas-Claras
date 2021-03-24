@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 const cors = require("cors"); //Cors is for interactivity between apps with diferent domains
-const pool = require("./db");
+const pool = require("./config/connectionDb");
 
 const port = 3001;
 
