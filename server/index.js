@@ -9,7 +9,6 @@ const port = 3001;
 app.use(cors());
 app.use(express.json()); //Give us access to the request body 
 
-
 //ROUTES
 
 //create a transaction
@@ -126,7 +125,6 @@ app.delete("/transaction/:id", async (req, res) => {
     console.error(error.message);
   }
 });
-
 
 app.listen(port, function () {
   console.log(`Server started at http://localhost:${port}`);
