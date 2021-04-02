@@ -3,15 +3,13 @@ const app = express();
 const cors = require("cors"); //Cors is for interactivity between apps with diferent domains
 const pool = require("./config/connectionDb");
 
-const port = process.env.PORT || 3001;
+const port = 3001;
 
 //middleware
 app.use(cors());
 app.use(express.json()); //Give us access to the request body 
 
 //ROUTES
-
-app.get('/', (req, res) => { res.send('Hello from Express!');
 
 //create a transaction
 app.post("/addtrans", async (req, res) => {
@@ -128,6 +126,6 @@ app.delete("/transaction/:id", async (req, res) => {
   }
 });
 
-app.listen(port, function () {
+app.listen(port, function(){
   console.log(`Server started at http://localhost:${port}`);
 });

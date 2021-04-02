@@ -7,11 +7,7 @@ const pool = new Pool({
     password: "b1006614832",
     host: "localhost",
     port: 5432,
-    database: "transactionsdb",
-    connectionString: process.env.DATABASE_URL,
-    ssl: {
-      rejectUnauthorized: false
-    }
+    database: "transactionsdb"
 });
 
 module.exports = pool;
