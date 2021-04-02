@@ -11,6 +11,8 @@ app.use(express.json()); //Give us access to the request body
 
 //ROUTES
 
+app.get('/', (req, res) => { res.send('Hello from Express!');
+
 //create a transaction
 app.post("/addtrans", async (req, res) => {
   try {
