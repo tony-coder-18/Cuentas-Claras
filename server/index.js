@@ -3,7 +3,7 @@ const app = express();
 const cors = require("cors"); //Cors is for interactivity between apps with diferent domains
 const pool = require("./config/connectionDb");
 
-const port = 3001;
+const port = process.env.PORT || 3001;
 
 //middleware
 app.use(cors());
