@@ -1,16 +1,28 @@
 import app from "./app.js";
-
+import { sequelize } from "./database/database.js";
 //const cors = require("cors"); //Cors is for interactivity between apps with diferent domains
 //const pool = require("../config/connectionDb");
+
+import './models/Transaction.js'
 
 const port = 3001;
 
 //middleware
 //app.use(cors());
-//app.use(express.json()); //Give us access to the request body 
+
+
+try {
+  await sequelize.sync({force: false});
+  app.listen(port, function(){
+    console.log(`Server started at http://localhost:${port}`);
+  });
+} catch (error) {
+  console.error('Unable to connect to the database:', error);
+}
 
 //ROUTES
 
+/*
 //create a transaction
 app.post("/addtrans", async (req, res) => {
   try {
@@ -126,6 +138,4 @@ app.delete("/transaction/:id", async (req, res) => {
   }
 });
 
-app.listen(port, function(){
-  console.log(`Server started at http://localhost:${port}`);
-});
+*/
