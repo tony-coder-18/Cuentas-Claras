@@ -1,5 +1,5 @@
 import { Router } from "express"
-import { getTransactions, postTransactions } from "../controllers/projects.controller.js"
+import { deleteTransaction, getTransactions, postTransactions, updateTransaction } from "../controllers/projects.controller.js"
 
 const router = Router()
 
@@ -10,9 +10,9 @@ router.get('/transactions', getTransactions)
 router.post('/transactions', postTransactions)
 
 // Handle PUT requests to /
-router.put('/transactions/:id',)
+router.put('/transactions/:id', updateTransaction)
 
 // Handle DELETE requests to /
-router.delete('/transactions/:id',)
+router.delete('/transactions/:id', deleteTransaction)
 
 export default router
