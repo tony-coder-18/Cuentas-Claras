@@ -28,10 +28,7 @@ export const postTransactions = async (req, res) => {
 
 // Handle PUT requests to /
 export const updateTransaction = async (req, res) => {
-
     const {transactionName, ammount, transactionDate, isIncome} = req.body;
-
-    
 
     try {
         const { id } = req.params;
@@ -70,4 +67,60 @@ export const deleteTransaction = async (req, res) => {
         return res.status(500).json({message: error.message})
     }
 
+}
+
+//Get all the incomes
+export const getIncomes = async () => {
+    let sum = 0;
+    try {
+        const incomes = await Transaction.findAll({
+            where: {
+                isIncome: true
+            }
+        });
+
+        sum = incomes.reduce((acc, obj)=>{
+            return acc + obj.ammount;
+        }, 0)
+
+        return sum
+    } catch (error) {
+        console.log(error.message)
+    }
+}
+//Get all the spends
+export const getSpends = async () => {
+    let sum = 0;
+    try {
+        const spends = await Transaction.findAll({
+            where: {
+                isIncome: false
+            }
+        });
+
+        sum = spends.reduce((acc, obj)=>{
+            return acc + obj.ammount;
+        }, 0)
+
+        if (sum == null) {
+            sum = 0;
+        }
+
+        return sum
+    } catch (error) {
+        console.log(error.message)
+    }
+}
+//Calculate available balance (incomes - spends)
+export const getbalance = async (req, res) => {
+    try {
+        const spends = await getSpends();
+        const incomes = await getIncomes();
+        
+        const balance = incomes - spends;
+        res.json({balance: balance})
+        
+    } catch (error) {
+        console.log(error.message)
+    }
 }
