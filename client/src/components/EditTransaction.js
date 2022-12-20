@@ -37,21 +37,21 @@ function EditTransaction({ transaction }) {
     <>
       <button
         type="button"
-        class="btn btn-primary bg-blue"
+        className="btn btn-primary bg-blue"
         data-toggle="modal"
         data-target={`#id${transaction.id}`}
       >
-        Edit
+        Editar
       </button>
 
-      <div class="modal" id={`id${transaction.id}`}>
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h4 class="modal-title">Editar transacción</h4>
+      <div className="modal" id={`id${transaction.id}`}>
+        <div className="modal-dialog">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h4 className="modal-title">Editar transacción</h4>
               <button
                 type="button"
-                class="close"
+                className="close"
                 data-dismiss="modal"
                 onClick={() => {
                   setTrans({ ...transaction });
@@ -61,7 +61,7 @@ function EditTransaction({ transaction }) {
               </button>
             </div>
 
-            <div class="modal-body">
+            <div className="modal-body">
               <label htmlFor="textInput" className="page-text07">Asunto</label>
               <input
                 onChange={(e) => {
@@ -86,7 +86,7 @@ function EditTransaction({ transaction }) {
               />
             </div>
 
-            <div class="modal-footer">
+            <div className="modal-footer">
               <button
                 type="button"
                 className="btn btn-primary"

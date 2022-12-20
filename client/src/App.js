@@ -8,6 +8,7 @@ import Footer from "./components/Footer";
 
 function App() {
 
+  /*
     return (
       <>
       
@@ -18,6 +19,17 @@ function App() {
           <Form />
         </section>
         <hr />
+        <section className="text-center">
+          <Records />
+        </section>
+        <Footer/>
+      </>
+    );
+    */
+
+    return (
+      <>
+        <Navbar />
         <section className="text-center">
           <Records />
         </section>

@@ -8,12 +8,14 @@ function Records() {
     try {
       const res = await fetch("http://localhost:3001/transactions");
       const jsonData = await res.json();
-
+      //console.log(jsonData)
       setTransactions(jsonData);
     } catch (error) {
       console.error(error.message);
     }
   };
+
+
 
   useEffect(() => {
     getTransactions();
@@ -38,12 +40,13 @@ function Records() {
     }
   };
 
+  let transType, rowType;
 
   return (
     <div className="container py-4">
       <h2 className="text-blue">Historial</h2>
 
-      <table class="table table-hover">
+      <table className="table table-hover">
         <thead>
           <tr>
             <th>Asunto</th>
@@ -54,15 +57,21 @@ function Records() {
           </tr>
         </thead>
 
-
         <tbody>
           {/* Function that Show each Table row (each transaction) from the transactions array  */}
           {transactions.map((transaction) => {
+              if (transaction.isIncome) {
+                transType = "Ingreso"
+                rowType = "table-success"
+              } else {
+                transType = "Egreso"
+                rowType = "table-danger"
+              };
               return (
-                <tr key={transaction.id}>
-                  <td>{transaction.transactionname}</td>
+                <tr className={rowType} key={transaction.id}>
+                  <td>{transaction.transactionName.charAt(0).toUpperCase()+transaction.transactionName.slice(1)}</td>
                   <td>${transaction.ammount}</td>
-                  <td>{transaction.transactiontype}</td>
+                  <td>{transType}</td>
                   <td>
                   <EditTransaction transaction={transaction} />
                   </td>
@@ -71,7 +80,7 @@ function Records() {
                       className="btn btn-danger"
                       onClick={() => deleteTransaction(transaction.id)}
                     >
-                      Delete
+                      Eliminar
                     </button>
                   </td>
                 </tr>

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import {getTransactions} from './Balance.js';
 
 function Form() {
   const [addIncome, setaddIncome] = useState({
