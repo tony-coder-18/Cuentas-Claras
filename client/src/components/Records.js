@@ -25,7 +25,7 @@ function Records() {
   const deleteTransaction = async (id) => {
     try {
       const deleteTrans = await fetch(
-        `http://localhost:3001/transaction/${id}`,
+        `http://localhost:3001/transactions/${id}`,
         {
           method: "DELETE",
         }
@@ -34,7 +34,7 @@ function Records() {
       setTransactions(
         transactions.filter((transaction) => transaction.id !== id)
       );
-      window.location = '/';
+      
     } catch (error) {
       console.error(error.message);
     }
