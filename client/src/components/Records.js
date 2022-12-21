@@ -15,8 +15,6 @@ function Records() {
     }
   };
 
-
-
   useEffect(() => {
     getTransactions();
   }, []);
@@ -73,7 +71,7 @@ function Records() {
                   <td>${transaction.ammount}</td>
                   <td>{transType}</td>
                   <td>
-                  <EditTransaction transaction={transaction} />
+                  <EditTransaction transactions={transactions} changeTrans={setTransactions} transaction={transaction} />
                   </td>
                   <td>
                     <button

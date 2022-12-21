@@ -1,25 +1,27 @@
 import React, { useState } from "react";
 
-function EditTransaction({ transaction }) {
+function EditTransaction({ transaction, changeTrans, transactions }) {
   const [trans, setTrans] = useState({ ...transaction });
+  //const [transactionsNew, setTransactionsNew] = useState([...transactions]);
 
   function handleChange(e) {
     let newValue = e.target.value;
     let name = e.target.name;
     if (name === "text") {
-      setTrans({ ...trans, transactionname: newValue });
+      setTrans({ ...trans, transactionName: newValue });
     } else {
       setTrans({ ...trans, ammount: newValue });
     }
+    
   }
 
   //   Function for editing a transactions (trigers with the edit button)
-  const handleEdit = async (e) => {
+  const handleEdit = async (e, id) => {
     
     try {
       const body = { ...trans };
       const editTrans = await fetch(
-        `http://localhost:3001/transaction/${trans.id}`,
+        `http://localhost:3001/transactions/${id}`,
         {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
@@ -27,11 +29,33 @@ function EditTransaction({ transaction }) {
         }
       );
 
-      window.location = "/";
+      setTrans({trans});
+      //window.location = "/";
+      
+      const newTrans = transactions.map((t)=> {
+        if (t.id === id) {
+          return trans
+        } else {
+          return t
+        }
+      });
+      
+      changeTrans(newTrans);
+      //setTransactionsNew([...transactionsNew, trans])
+      //changeTrans(transactionsNew.filter((t) => t.id !== id));
+        //updateRecordList();
+      //TODO: get tje index of the elemnt we are editing
+      //to later on edit it
+
+      //console.log(transactionsNew)
     } catch (error) {
       console.error(error.message);
     }
   };
+
+  /*const updateRecordList = () => {
+    changeTrans([...transactions, trans])
+  }*/
 
   return (
     <>
@@ -67,7 +91,7 @@ function EditTransaction({ transaction }) {
                 onChange={(e) => {
                   handleChange(e);
                 }}
-                value={trans.transactionname}
+                value={trans.transactionName}
                 type="text"
                 name="text"
                 className="form-control"
@@ -91,7 +115,9 @@ function EditTransaction({ transaction }) {
                 type="button"
                 className="btn btn-primary"
                 data-dismiss="modal"
-                onClick={(e) => handleEdit(e)}
+                onClick={(e) => {
+                  handleEdit(e, transaction.id)
+                }}
               >
                 Editar
               </button>
