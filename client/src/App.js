@@ -8,34 +8,15 @@ import Footer from "./components/Footer";
 
 function App() {
 
-  /*
-    return (
+    return(
       <>
-      
         <Navbar />
         <Balance/>
-        <hr />
-        <section className="form-container text-center">
-          <Form />
-        </section>
-        <hr />
-        <section className="text-center">
-          <Records />
-        </section>
+        <Form />
+        <Records />
         <Footer/>
       </>
-    );
-    */
-
-    return (
-      <>
-        <Navbar />
-        <section className="text-center">
-          <Records />
-        </section>
-        <Footer/>
-      </>
-    );
+    )
 }
 
 export default App;

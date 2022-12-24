@@ -124,3 +124,22 @@ export const getbalance = async (req, res) => {
         console.log(error.message)
     }
 }
+
+export const getIncomesContr = async (req, res) => {
+    try {
+        const incomes = await getIncomes();
+        res.json({incomes: incomes})
+    } catch (error) {
+        console.log(error.message)
+    }
+}
+
+export const getSpendsContr = async (req, res) => {
+    try {
+        const spends = await getSpends();
+        res.json({spends: spends})
+        
+    } catch (error) {
+        console.log(error.message)
+    }
+}

@@ -4,6 +4,7 @@
   "type": "module",
   "private": true,
   "dependencies": {
+    "@reduxjs/toolkit": "^1.9.1",
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^11.2.5",
     "@testing-library/user-event": "^12.7.1",
@@ -12,7 +13,9 @@
     "cors": "^2.8.5",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
+    "react-redux": "^8.0.5",
     "react-scripts": "4.0.2",
+    "redux": "^4.2.0",
     "web-vitals": "^1.1.0"
   },
   "scripts": {
@@ -39,5 +42,7 @@
       "last 1 safari version"
     ]
   },
-  "engines": { "node": "10.23.2" }
+  "engines": {
+    "node": "10.23.2"
+  }
 }

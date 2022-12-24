@@ -30,7 +30,6 @@ function EditTransaction({ transaction, changeTrans, transactions }) {
       );
 
       setTrans({trans});
-      //window.location = "/";
       
       const newTrans = transactions.map((t)=> {
         if (t.id === id) {
@@ -39,15 +38,9 @@ function EditTransaction({ transaction, changeTrans, transactions }) {
           return t
         }
       });
-      
+      //Calling the state hook of the parent component
+      //to update the records list
       changeTrans(newTrans);
-      //setTransactionsNew([...transactionsNew, trans])
-      //changeTrans(transactionsNew.filter((t) => t.id !== id));
-        //updateRecordList();
-      //TODO: get tje index of the elemnt we are editing
-      //to later on edit it
-
-      //console.log(transactionsNew)
     } catch (error) {
       console.error(error.message);
     }

@@ -1,5 +1,5 @@
 import { Router } from "express"
-import { deleteTransaction, getbalance, getTransactions, postTransactions, updateTransaction } from "../controllers/projects.controller.js"
+import { deleteTransaction, getbalance, getIncomesContr, getSpends, getSpendsContr, getTransactions, postTransactions, updateTransaction } from "../controllers/projects.controller.js"
 
 const router = Router()
 
@@ -7,6 +7,10 @@ const router = Router()
 router.get('/transactions', getTransactions)
 
 router.get('/balance', getbalance)
+
+router.get('/incomes', getIncomesContr)
+
+router.get('/spends', getSpendsContr)
 
 // Handle POST requests to /
 router.post('/transactions', postTransactions)

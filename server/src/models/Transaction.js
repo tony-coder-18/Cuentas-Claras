@@ -11,7 +11,7 @@ export const Transaction = sequelize.define('Transaction', {
         type: DataTypes.STRING
     },
     ammount: {
-        type: DataTypes.INTEGER
+        type: DataTypes.FLOAT
     },
     transactionDate: {
         type: DataTypes.DATEONLY

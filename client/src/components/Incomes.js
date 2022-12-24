@@ -1,18 +1,24 @@
-import React, { useState, useEffect } from "react"
-import Adding from "./Adding";
+import React, { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
+import { useGetIncomesSumQuery, useGetSpendsSumQuery, useGetSumQuery, useGetTransactionsQuery } from "../api/transactions/transaction";
 
+function Incomes() {
 
-function Incomes(incomes) {
-  
-  return (
-    <div className="page-balance">
-      <h1 className="thqHeading1 page-text03">
-        Ingresos
-        <br />
-      </h1>
-      <span className="page-text04"></span>
-    </div>
-  );
+  const { data, error, isLoading } = useGetIncomesSumQuery();
+
+  if (isLoading) {
+    return <div>Loading...</div>
+  } else if (error) {
+    return <div>{error}</div>
+  } else {
+    console.log(data)
+    return (
+      <div className="text-success order-lg-1" >
+        <h2 className="" >Ingresos</h2>
+        <p className="display-5">${data.incomes}</p>
+      </div>
+    );
+  }
 }
 
 export default Incomes;
