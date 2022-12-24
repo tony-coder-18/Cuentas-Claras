@@ -41,7 +41,13 @@ function Form() {
     try {
       const body = { ...addIncome };
       createTransaction(body)
-      
+      // Reset all the fields of the form 
+      setaddIncome({
+        transactionName: "",
+        ammount: 0,
+        transactionDate: "",
+        isIncome: true,
+      })
     } catch (error) {
       console.error(error.message);
     }
@@ -56,7 +62,7 @@ function Form() {
             <label className="text-blue">Asunto</label>
             <input
               onChange={(e) => handleChange(e)}
-              value={addIncome.name}
+              value={addIncome.transactionName}
               type="text"
               name="text"
               className="form-control"
@@ -80,7 +86,7 @@ function Form() {
             <label className="text-blue">Fecha</label>
             <input
               onChange={(e) => handleChange(e)}
-              value={addIncome.date}
+              value={addIncome.transactionDate}
               type="date"
               name="date"
               className="form-control"

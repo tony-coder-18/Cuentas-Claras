@@ -28,12 +28,20 @@ export const transactionApi = createApi({
         query: () => 'spends',
         providesTags: ['SpendsSum']
       }),
+      deleteTransaction: builder.mutation({
+        query: (id) => ({
+            url: `transactions/${id}`,
+            method: 'DELETE'
+        }),
+        invalidatesTags: ['Transactions', 'Sum', 'IncomesSum', 'SpendsSum']
+      }),
     }),
   })
 
 export const { 
     useGetTransactionsQuery, 
     useCreateTransactionMutation, 
+    useDeleteTransactionMutation,
     useGetSumQuery,
     useGetIncomesSumQuery,
     useGetSpendsSumQuery,

@@ -1,45 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { useGetTransactionsQuery } from "../api/transactions/transaction";
+import { useDeleteTransactionMutation, useGetTransactionsQuery } from "../api/transactions/transaction";
 import EditTransaction from "./EditTransaction";
 
-function Records(setSum) {
+function Records() {
   const [transactions, setTransactions] = useState([]);
 
-  // const getTransactions = async () => {
-  //   try {
-  //     const res = await fetch("http://localhost:3001/transactions");
-  //     const jsonData = await res.json();
-  //     //console.log(jsonData)
-  //     setTransactions(jsonData);
-  //   } catch (error) {
-  //     console.error(error.message);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   getTransactions();
-  // }, []);
-
-  // //Function for deleting a transactions (trigers with the delete button)
-  // const deleteTransaction = async (id) => {
-  //   try {
-  //     const deleteTrans = await fetch(
-  //       `http://localhost:3001/transactions/${id}`,
-  //       {
-  //         method: "DELETE",
-  //       }
-  //     );
-
-  //     setTransactions(
-  //       transactions.filter((transaction) => transaction.id !== id)
-  //     );
-      
-  //   } catch (error) {
-  //     console.error(error.message);
-  //   }
-  // };
-
   const { data, error, isLoading } = useGetTransactionsQuery();
+
+  const [deleteTransaction] = useDeleteTransactionMutation();
 
   let transType, rowType;
 
@@ -88,7 +56,7 @@ function Records(setSum) {
                         <td>
                           <button
                             className="btn btn-danger"
-                            // onClick={() => deleteTransaction(transaction.id)}
+                            onClick={() => deleteTransaction(transaction.id)}
                           >
                             Eliminar
                           </button>
@@ -107,7 +75,7 @@ function Records(setSum) {
                       <td>
                         <button
                           className="btn btn-danger"
-                          // onClick={() => deleteTransaction(transaction.id)}
+                          onClick={() => deleteTransaction(transaction.id)}
                         >
                           Eliminar
                         </button>
