@@ -1,8 +1,11 @@
 import React, { useState } from "react";
+import { useEditTransactionMutation } from "../api/transactions/transaction";
 
 function EditTransaction({ transaction, changeTrans, transactions }) {
   const [trans, setTrans] = useState({ ...transaction });
   //const [transactionsNew, setTransactionsNew] = useState([...transactions]);
+
+  const [editTransaction] = useEditTransactionMutation();
 
   function handleChange(e) {
     let newValue = e.target.value;
@@ -16,34 +19,10 @@ function EditTransaction({ transaction, changeTrans, transactions }) {
   }
 
   //   Function for editing a transactions (trigers with the edit button)
-  const handleEdit = async (e, id) => {
+  const handleEdit = (e, id) => {
+    const body = { ...trans };
     
-    try {
-      const body = { ...trans };
-      const editTrans = await fetch(
-        `http://localhost:3001/transactions/${id}`,
-        {
-          method: "PUT",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(body),
-        }
-      );
-
-      setTrans({trans});
-      
-      const newTrans = transactions.map((t)=> {
-        if (t.id === id) {
-          return trans
-        } else {
-          return t
-        }
-      });
-      //Calling the state hook of the parent component
-      //to update the records list
-      changeTrans(newTrans);
-    } catch (error) {
-      console.error(error.message);
-    }
+    editTransaction(body);
   };
 
   /*const updateRecordList = () => {

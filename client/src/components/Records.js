@@ -34,61 +34,38 @@ function Records() {
           <tbody>
             {/* Function that Show each Table row (each transaction) from the transactions array  */}
             {data.map((transaction) => {
-                if (transaction.isIncome) {
-                  transType = "Ingreso"
-                  rowType = "table-success"
-                } else {
-                  transType = "Egreso"
-                  rowType = "table-danger"
-                };
-                //Check if some value is missing to show nothing if that's the case
-                if (transaction.transactionName == null || 
-                  transaction.ammount == null || 
-                  transaction.transactionDate == null ) {
-                    return (
-                      <tr className={rowType} key={transaction.id}>
-                        <td></td>
-                        <td></td>
-                        <td>{transType}</td>
-                        <td>
-                        <EditTransaction transactions={transactions} changeTrans={setTransactions} transaction={transaction} />
-                        </td>
-                        <td>
-                          <button
-                            className="btn btn-danger"
-                            onClick={() => deleteTransaction(transaction.id)}
-                          >
-                            Eliminar
-                          </button>
-                        </td>
-                      </tr>
-                    );
-                } else {
-                  return (
-                    <tr className={rowType} key={transaction.id}>
-                      <td>{transaction.transactionName.charAt(0).toUpperCase()+transaction.transactionName.slice(1)}</td>
-                      <td>${transaction.ammount}</td>
-                      <td>{transType}</td>
-                      <td>
-                      <EditTransaction transactions={transactions} changeTrans={setTransactions} transaction={transaction} />
-                      </td>
-                      <td>
-                        <button
-                          className="btn btn-danger"
-                          onClick={() => deleteTransaction(transaction.id)}
-                        >
-                          Eliminar
-                        </button>
-                      </td>
-                    </tr>
-                  );
-                }
-              })}
+              if (transaction.isIncome) {
+                transType = "Ingreso"
+                rowType = "table-success"
+              } else {
+                transType = "Egreso"
+                rowType = "table-danger"
+              };
+              //Check if some value is missing to show nothing if that's the case
+              return (
+                <tr className={rowType} key={transaction.id}>
+                  <td>{transaction.transactionName == null ? "" : transaction.transactionName}</td>
+                  <td> {transaction.ammount == null ? "" : transaction.ammount}</td>
+                  <td>{transType}</td>
+                  <td>
+                    <EditTransaction transaction={transaction} />
+                  </td>
+                  <td>
+                    <button
+                      className="btn btn-danger"
+                      onClick={() => deleteTransaction(transaction.id)}
+                    >
+                      Eliminar
+                    </button>
+                  </td>
+                </tr>
+              );
+            })}
           </tbody>
         </table>
       </div>
     );
-}
+  }
 }
 
 export default Records;
