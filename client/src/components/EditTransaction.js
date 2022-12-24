@@ -78,7 +78,8 @@ function EditTransaction({ transaction, changeTrans, transactions }) {
                 type="number"
                 name="number"
                 className="form-control"
-                
+                min="0" 
+                onInput={"validity.valid||(value='')"}
               />
             </div>
 
